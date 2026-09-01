@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Do It Up</title>
+<style>
+  :root {
+    --bg: #fbfaf8; --fg: #23201d; --muted: #6b635b;
+    --rule: #e2ddd6; --accent: #b5561b; --card: #f5f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16140f; --fg: #ece7df; --muted: #a2988c;
+      --rule: #302b24; --accent: #e08a4a; --card: #1e1b16;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -.02em; }
+  h2 {
+    font-size: 1.15rem; margin: 2.75rem 0 .75rem; letter-spacing: -.01em;
+    padding-top: 1.25rem; border-top: 1px solid var(--rule);
+  }
+  h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; color: var(--accent); }
+  .meta { color: var(--muted); font-size: .9rem; margin: 0; }
+  .lede { font-size: 1.05rem; color: var(--muted); margin: 1.5rem 0 0; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.25rem; }
+  li { margin-bottom: .5rem; }
+  a { color: var(--accent); }
+  code {
+    background: var(--card); padding: .1em .35em; border-radius: 3px;
+    font: .875em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .callout {
+    background: var(--card); border-left: 3px solid var(--accent);
+    padding: 1rem 1.15rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
+  th, td { text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; }
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: .875rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Do It Up &middot; Last updated 31 August 2026</p>
+  <p class="lede">This policy covers the Android applications published by Do It Up, including <strong>Hearth</strong> (listed as Hearth Launcher).</p>
+</header>
+
+<div class="callout">
+  <p><strong>The short version.</strong> These apps have no accounts and no servers. We do not collect, transmit, or store your personal information &mdash; there is nowhere for it to go. Everything the app saves stays on your device, and the only services it contacts are ones you configure yourself.</p>
+</div>
+
+<h2>1. We do not operate a server</h2>
+
+<p>Do It Up runs no backend for these apps. There is no sign-up, no account, no profile, and no login. Nothing you enter is sent to us, and we have no ability to see, retrieve, or delete your data &mdash; because we never receive it in the first place.</p>
+
+<p>Entitlement, where it applies, is handled entirely by Google Play under Google&rsquo;s own terms. We do not receive your payment details.</p>
+
+<h2>2. What is stored on your device</h2>
+
+<p>Hearth stores the following locally, on the device only:</p>
+
+<table>
+  <tr><th>What</th><th>Why</th><th>How</th></tr>
+  <tr>
+    <td>Home Assistant address and access token</td>
+    <td>To connect to your home automation system</td>
+    <td><strong>Encrypted</strong>, via the Android Keystore</td>
+  </tr>
+  <tr>
+    <td>IPTV provider address, username, password</td>
+    <td>To load your channels and guide</td>
+    <td><strong>Encrypted</strong>, via the Android Keystore</td>
+  </tr>
+  <tr>
+    <td>Preferences &mdash; favourites, channel groups, watch history, theme, layout, hidden rooms</td>
+    <td>To keep the app set up the way you left it</td>
+    <td>Standard app storage</td>
+  </tr>
+  <tr>
+    <td>Programme guide cache</td>
+    <td>So the guide loads without re-downloading</td>
+    <td>Local database</td>
+  </tr>
+</table>
+
+<p>Credentials are held in Keystore-backed encrypted storage, so the stored file is ciphertext rather than plain text. This protects them at rest; it is not a defence against someone with physical or administrative control of an unlocked device.</p>
+
+<p>Automatic cloud backup is <strong>disabled</strong> for these apps, so your credentials are not copied into Google&rsquo;s backup service.</p>
+
+<p>Uninstalling the app removes everything above. There is no separate deletion request to make, because there is no copy anywhere else.</p>
+
+<h2>3. Who your device talks to</h2>
+
+<p>The app makes network connections only to services you have chosen or that the platform provides. None of them are operated by us.</p>
+
+<h3>Your Home Assistant server</h3>
+<p>The address is one you supply, usually on your own local network. Your access token is sent to it to authenticate, exactly as any Home Assistant client does. Your home data does not pass through us.</p>
+
+<h3>Your IPTV provider</h3>
+<p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one. Channel logos and artwork are frequently hosted on third-party content networks referenced by your provider&rsquo;s playlist; loading them contacts those hosts directly.</p>
+
+<h3>Weather</h3>
+<p>When weather is not coming from Home Assistant, the app requests a forecast from <a href="https://open-meteo.com/">Open-Meteo</a>. It sends only the location you selected. <strong>The app does not request or use your device&rsquo;s location permission</strong> &mdash; the location is one you typed or picked yourself.</p>
+
+<h3>Voice search</h3>
+<p>Voice search uses Android&rsquo;s built-in speech recognition. When you activate it, audio is handled by your device&rsquo;s speech recognition provider &mdash; typically Google &mdash; under that provider&rsquo;s privacy policy. We do not record, store, or receive audio. The microphone is active only while you are holding the voice control.</p>
+
+<h2>4. What we do not do</h2>
+
+<ul>
+  <li><strong>No analytics.</strong> There is no Firebase, no Google Analytics, and no third-party SDK of any kind.</li>
+  <li><strong>No crash or usage reporting.</strong> Nothing is sent when the app misbehaves.</li>
+  <li><strong>No advertising</strong> and no advertising identifiers.</li>
+  <li><strong>No tracking</strong> across apps, sites, or devices.</li>
+  <li><strong>No selling or sharing</strong> of personal information. We hold none to sell.</li>
+</ul>
+
+<h2>5. Permissions, and why each is needed</h2>
+
+<table>
+  <tr><th>Permission</th><th>Used for</th></tr>
+  <tr><td>Internet, network state</td><td>Reaching your Home Assistant server and IPTV provider</td></tr>
+  <tr><td>Microphone</td><td>Voice search, and the audio visualiser shown for radio channels &mdash; Android requires this permission to read audio levels for the visualiser</td></tr>
+  <tr><td>Display over other apps</td><td>Showing Home Assistant alerts on top of whatever is playing</td></tr>
+  <tr><td>Foreground service</td><td>Keeping that alert service running</td></tr>
+  <tr><td>Run at startup</td><td>Starting as your launcher when the device boots</td></tr>
+  <tr><td>Notifications</td><td>Showing app notifications</td></tr>
+</table>
+
+<p><strong>Location permission is not requested.</strong></p>
+
+<h2>6. Children</h2>
+
+<p>These apps are not directed at children and we do not knowingly collect information from anyone. As described above, we do not collect personal information from users of any age.</p>
+
+<h2>7. Changes</h2>
+
+<p>If this policy changes, the updated version is published at this address with a new date at the top. Material changes affecting how your information is handled will be reflected here before the corresponding app update ships.</p>
+
+<h2>8. Contact</h2>
+
+<p>Questions about this policy: <a href="mailto:hearth@doitup.ca">hearth@doitup.ca</a></p>
+
+<footer>
+  <p>Do It Up &middot; Ontario, Canada</p>
+</footer>
+
+</div>
+</body>
+</html>
