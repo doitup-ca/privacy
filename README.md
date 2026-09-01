@@ -32,6 +32,11 @@ being true, the policy must change **in the same release**:
 - outbound network limited to: the user's Home Assistant, the user's IPTV
   provider (and logo CDNs its playlist references), Open-Meteo for weather, and
   the platform speech recogniser for voice search
+- unencrypted (HTTP) traffic is refused except to local addresses and to **one**
+  IPTV provider host the user has explicitly approved, after being shown that
+  their provider password travels in the clear. HTTPS is always tried first.
+  See hearth#134 — if the consent screen is ever removed, weakened, or made to
+  cover more than one host, the "Providers without encryption" section is wrong
 
 The Play Console **Data safety** form must agree with this page. They are checked
 against each other by Google, and a mismatch is a listing problem.
