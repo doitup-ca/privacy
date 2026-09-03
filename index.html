@@ -148,7 +148,10 @@
   <tr><td>Foreground service</td><td>Keeping that alert service running</td></tr>
   <tr><td>Run at startup</td><td>Starting as your launcher when the device boots</td></tr>
   <tr><td>Notifications</td><td>Showing app notifications</td></tr>
+  <tr><td>Accessibility service <em>(optional)</em></td><td>Making the HOME button return to Hearth on devices that ignore the launcher setting, and turning the screen off from the Sleep control. You switch it on yourself in Android&rsquo;s settings; the app runs without it</td></tr>
 </table>
+
+<p><strong>The accessibility service cannot read your screen.</strong> It is declared without <code>canRetrieveWindowContent</code> &mdash; the capability that would let a service see the contents of other apps. It receives only the name of the app coming to the foreground, which is what tells it the HOME button was pressed, and nothing about what is on screen or what you type.</p>
 
 <p><strong>Location permission is not requested.</strong></p>
 
