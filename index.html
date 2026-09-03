@@ -58,7 +58,7 @@
 
 <header>
   <h1>Privacy Policy</h1>
-  <p class="meta">Do It Up &middot; Last updated 1 September 2026</p>
+  <p class="meta">Do It Up &middot; Last updated 3 September 2026</p>
   <p class="lede">This policy covers the Android applications published by Do It Up, including <strong>Hearth</strong> (listed as Hearth Launcher).</p>
 </header>
 
@@ -114,12 +114,12 @@
 <p>The address is one you supply, usually on your own local network. Your access token is sent to it to authenticate, exactly as any Home Assistant client does. Your home data does not pass through us.</p>
 
 <h3>Your IPTV provider</h3>
-<p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one. Channel logos and artwork are frequently hosted on third-party content networks referenced by your provider&rsquo;s playlist; loading them contacts those hosts directly.</p>
+<p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one. Channel logos and artwork are frequently hosted on third-party content networks referenced by your provider&rsquo;s playlist; loading them contacts those hosts directly. Some of those hosts offer no encryption, and the app loads pictures from them anyway rather than leaving the channel blank &mdash; so which logos your device fetches, and therefore which channels you are browsing, can be seen by anyone on your network. This applies to images only: everything else is held to the rule below.</p>
 
 <p><strong>Providers without encryption.</strong> The app always tries to reach your provider over an encrypted connection (HTTPS) first. Many IPTV providers do not offer one. If yours does not, the app will <strong>ask you before connecting</strong>, and will tell you what it means: over an unencrypted connection your provider username and password are sent in the clear &mdash; the Xtream protocol places them in the address of every request, including every stream &mdash; and what you are watching is visible to anyone on your network and to your internet service provider.</p>
 
 <div class="callout">
-  <p>If you agree to that, the exception applies to <strong>that one provider address and nothing else</strong>. Your Home Assistant connection, weather, and everything else are unaffected, and unencrypted connections elsewhere remain refused. Connecting to a different provider asks again, and uninstalling the app removes it with everything else.</p>
+  <p>If you agree to that, the exception applies to <strong>that one provider address</strong>. Your Home Assistant connection, weather, and everything else are unaffected. Aside from the channel artwork described above, unencrypted connections elsewhere remain refused &mdash; and an unencrypted response that is not a picture is refused too. Connecting to a different provider asks again, and uninstalling the app removes it with everything else.</p>
 </div>
 
 <h3>Weather</h3>
