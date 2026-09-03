@@ -3,174 +3,613 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>Privacy Policy — Do It Up</title>
 <style>
+  /* ============================================================
+     Linear design system tokens, dark canvas only.
+     Typefaces: Linear Display / Text / Mono are proprietary, so the
+     documented substitutes are used — Inter, JetBrains Mono — with the
+     platform faces first on macOS, exactly as the design specifies.
+     ⚠️ Deliberately NOT fetched from a font CDN: this page's whole claim
+     is that nothing here talks to a third party, and a webfont request
+     would make the privacy policy itself the counter-example.
+
+     ⚠️ Two colours are raised from the design's own values, because the
+     design's are below the WCAG AA 4.5:1 floor for small text and this
+     page is a legal document Google reads:
+
+       • the design's `ink-tertiary` #62666d, for the mono micro-labels,
+         measured 3.1–3.6:1 on these surfaces. Those labels now use
+         --ink-subtle (5.5–6.4:1). #62666d is not defined here at all,
+         so nothing can reach for it by habit.
+       • `primary` #5e6ad2 as *text* measured 3.8–4.4:1. Text uses
+         --primary-strong (6.2–7.3:1), which is the design system's own
+         `primary-hover`. Plain --primary survives for the progress rule,
+         which is a graphic and only owes 3:1.
+     ============================================================ */
   :root {
-    --bg: #fbfaf8; --fg: #23201d; --muted: #6b635b;
-    --rule: #e2ddd6; --accent: #b5561b; --card: #f5f2ee;
+    --primary:          #5e6ad2; /* graphics only — see the note above */
+    --primary-strong:   #828fff; /* the design's primary-hover; primary wherever it is text */
+    --canvas:           #010102;
+    --surface-1:        #0e0f11;
+    --surface-2:        #17181a;
+    --hairline:         #23252a;
+    --hairline-strong:  #34373d;
+    --hairline-tertiary:#1a1c1f;
+    --ink:              #f7f8f8;
+    --ink-muted:        #d0d6e0;
+    --ink-subtle:       #8a8f98;
+    --success:          #27a644;
+    --font-text: 'Inter', 'SF Pro Display', -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --lift: inset 0 1px 0 rgba(255,255,255,0.04);
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #16140f; --fg: #ece7df; --muted: #a2988c;
-      --rule: #302b24; --accent: #e08a4a; --card: #1e1b16;
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-text);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---- sticky header ---------------------------------------- */
+
+  .topbar {
+    position: sticky; top: 0; z-index: 30;
+    border-bottom: 1px solid var(--hairline);
+    background: rgba(1,1,2,0.85);
+    backdrop-filter: blur(10px);
+  }
+  .topbar-inner {
+    height: 60px; display: flex; align-items: center;
+    justify-content: space-between; gap: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 26px; flex: none;
+    border: 1px solid var(--hairline-strong); border-radius: 4px;
+    background: var(--surface-2); color: var(--primary-strong);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+  }
+  .brand-name { font-size: 14px; font-weight: 500; letter-spacing: -0.2px; color: var(--ink); }
+  .brand-sep  { font-size: 14px; color: var(--ink-subtle); }
+  .brand-page { font-size: 14px; color: var(--ink-muted); }
+  .topbar a { font-size: 13px; color: var(--ink-subtle); text-decoration: none; white-space: nowrap; }
+  .topbar a:hover { color: var(--ink); }
+  /* Scroll position. Starts at 0 and stays there without JS, which is
+     correct: it is an indicator, never a control. */
+  #progress {
+    position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+    background: var(--primary); transition: width 90ms linear;
+  }
+
+  /* ---- hero -------------------------------------------------- */
+
+  .hero { padding: 80px 0 56px; border-bottom: 1px solid var(--hairline); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 2px 8px; border-radius: 9999px;
+    border: 1px solid var(--hairline); background: var(--surface-2);
+    font-size: 12px; line-height: 1.4; color: var(--ink-muted);
+  }
+  .badge .dot {
+    width: 6px; height: 6px; border-radius: 9999px;
+    background: var(--success); flex: none;
+  }
+  h1 {
+    margin: 22px 0 0; font-weight: 600; font-size: 60px;
+    line-height: 1.03; letter-spacing: -2.4px; color: var(--ink);
+  }
+  .lede {
+    margin: 20px 0 0; max-width: 62ch; font-size: 19px;
+    line-height: 1.6; letter-spacing: -0.2px; color: var(--ink-muted);
+  }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 28px; margin-top: 32px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; color: var(--ink-subtle);
+  }
+
+  /* ---- panels ------------------------------------------------ */
+
+  .panel {
+    border: 1px solid var(--hairline-strong); border-radius: 12px;
+    background: var(--surface-2); box-shadow: var(--lift); overflow: hidden;
+  }
+  .panel-label {
+    padding: 0 26px; height: 40px; display: flex; align-items: center;
+    border-bottom: 1px solid var(--hairline);
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; color: var(--ink-subtle);
+  }
+  .panel-label.accent { color: var(--primary-strong); font-size: 11px; }
+  .panel-body { padding: 26px; }
+  .panel-body > p:last-child { margin-bottom: 0; }
+
+  .short { margin: 56px 0 0; }
+  .short .panel-body { padding: 30px 26px 32px; }
+  .short-lede {
+    margin: 0; max-width: 70ch; font-size: 19px;
+    line-height: 1.6; letter-spacing: -0.2px; color: var(--ink);
+  }
+  .claims {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px; margin-top: 28px; background: var(--hairline-tertiary);
+    border: 1px solid var(--hairline-tertiary); border-radius: 8px; overflow: hidden;
+  }
+  .claim { padding: 16px 18px; background: var(--surface-1); }
+  .claim-t { font-size: 15px; font-weight: 500; color: var(--success); }
+  .claim-d { font-size: 13px; line-height: 1.5; color: var(--ink-subtle); margin-top: 5px; }
+
+  /* ---- body layout ------------------------------------------- */
+
+  .columns {
+    display: grid; grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 64px; align-items: start; padding: 64px 0 96px;
+  }
+  main { min-width: 0; }
+
+  section { scroll-margin-top: 88px; padding-bottom: 52px; }
+  section + section { border-top: 1px solid var(--hairline-tertiary); padding-top: 52px; }
+  .s-head { display: flex; gap: 16px; align-items: baseline; margin-bottom: 18px; }
+  .s-num { font-family: var(--font-mono); font-size: 12px; color: var(--primary-strong); flex: none; }
+  h2 {
+    margin: 0; font-weight: 600; font-size: 30px;
+    letter-spacing: -1.1px; color: var(--ink);
+  }
+  section p {
+    margin: 0 0 16px; max-width: 72ch; font-size: 17px;
+    line-height: 1.7; color: var(--ink-muted);
+  }
+  section p:last-child { margin-bottom: 0; }
+  section p strong { color: var(--ink); font-weight: 500; }
+  a { color: var(--primary-strong); }
+  code {
+    font-family: var(--font-mono); font-size: 0.875em;
+    padding: 0.1em 0.35em; border-radius: 4px;
+    background: var(--surface-2); border: 1px solid var(--hairline-tertiary);
+    color: var(--ink-muted);
+  }
+
+  /* ---- cards (section 3) ------------------------------------- */
+
+  .cards { display: grid; gap: 16px; }
+  .card {
+    border: 1px solid var(--hairline); border-radius: 12px;
+    background: var(--surface-1); padding: 26px 26px 28px; box-shadow: var(--lift);
+  }
+  .card h3 {
+    margin: 0 0 12px; font-weight: 500; font-size: 19px;
+    letter-spacing: -0.4px; color: var(--ink);
+  }
+  .card p {
+    margin: 0 0 14px; max-width: 70ch; font-size: 16px;
+    line-height: 1.65; color: var(--ink-subtle);
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .panel-body p {
+    margin: 0 0 14px; max-width: 70ch; font-size: 16px;
+    line-height: 1.65; color: var(--ink-muted);
+  }
+  .panel-body p strong { color: var(--ink); font-weight: 500; }
+
+  /* ---- tables ------------------------------------------------
+     Real table markup, styled to the design's grid. It is a legal
+     document: the row/column relationship has to survive a screen
+     reader, which a div grid does not carry.
+     ------------------------------------------------------------ */
+
+  .table-wrap {
+    border: 1px solid var(--hairline); border-radius: 12px;
+    background: var(--surface-1); box-shadow: var(--lift); overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    padding: 14px 22px; text-align: left; font-weight: 400;
+    border-bottom: 1px solid var(--hairline); background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.14em; color: var(--ink-subtle);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  tbody td {
+    padding: 18px 22px; text-align: left; vertical-align: top;
+    font-size: 15px; line-height: 1.55; color: var(--ink-subtle);
+    border-bottom: 1px solid var(--hairline-tertiary);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td:first-child { color: var(--ink); }
+  td.yes { color: var(--success); }
+  .store-table thead th:nth-child(1), .store-table tbody td:nth-child(1) { width: 36%; }
+  .store-table thead th:nth-child(2), .store-table tbody td:nth-child(2) { width: 33%; }
+  .perm-table thead th:nth-child(1), .perm-table tbody td:nth-child(1) { width: 35%; }
+  .after-table { margin-top: 26px; }
+
+  /* ---- the "what we do not do" list -------------------------- */
+
+  .nots {
+    display: grid; gap: 1px; background: var(--hairline-tertiary);
+    border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden;
+  }
+  .not {
+    display: flex; gap: 16px; align-items: baseline;
+    padding: 20px 24px; background: var(--surface-1);
+    font-size: 16px; line-height: 1.6; color: var(--ink-muted);
+  }
+  .not::before {
+    content: '—'; flex: none;
+    font-family: var(--font-mono); font-size: 14px; color: var(--ink-subtle);
+  }
+  .not strong { color: var(--ink); font-weight: 500; }
+
+  /* ---- contact button ---------------------------------------- */
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 40px; padding: 0 18px; border-radius: 8px;
+    border: 1px solid var(--hairline); background: var(--surface-1);
+    color: var(--ink); font-size: 14px; text-decoration: none;
+    transition: background 140ms ease;
+  }
+  .btn:hover { background: var(--surface-2); }
+
+  /* ---- contents rail ----------------------------------------- */
+
+  .toc { position: sticky; top: 92px; }
+  .toc-label {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+    color: var(--ink-subtle); padding-bottom: 14px;
+    border-bottom: 1px solid var(--hairline-tertiary);
+  }
+  .toc nav { display: grid; gap: 2px; padding-top: 12px; }
+  .toc a {
+    display: flex; gap: 12px; padding: 7px 10px; border-radius: 6px;
+    font-size: 13px; line-height: 1.4; color: var(--ink-subtle);
+    text-decoration: none; transition: color 140ms ease, background 140ms ease;
+  }
+  .toc a:hover { background: var(--surface-2); color: var(--ink-muted); }
+  .toc a.here { color: var(--ink); background: var(--surface-2); }
+  .toc a .n { font-family: var(--font-mono); font-size: 11px; color: var(--ink-subtle); flex: none; }
+
+  /* ---- footer ------------------------------------------------ */
+
+  footer { border-top: 1px solid var(--hairline); background: var(--surface-1); }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto; padding: 32px;
+    display: flex; flex-wrap: wrap; gap: 16px;
+    justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.1em; color: var(--ink-subtle);
+  }
+
+  /* ---- narrow screens ---------------------------------------
+     The rail is the first thing to go: it is navigation for a page
+     that is only eight sections long, and the policy has to read on
+     a phone. Below that, the type steps down and the tables stack.
+     ------------------------------------------------------------ */
+
+  @media (max-width: 900px) {
+    .columns { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 48px 0 72px; }
+    .toc { display: none; }
+  }
+  @media (max-width: 640px) {
+    .shell { padding: 0 20px; }
+    .hero { padding: 48px 0 40px; }
+    h1 { font-size: 38px; letter-spacing: -1.4px; }
+    .lede, .short-lede { font-size: 17px; }
+    h2 { font-size: 24px; letter-spacing: -0.7px; }
+    section p { font-size: 16px; }
+    .hero-meta { gap: 10px; flex-direction: column; }
+    .panel-label, .panel-body, .card { padding-left: 20px; padding-right: 20px; }
+    .short .panel-body { padding: 24px 20px 26px; }
+
+    /* Stacked rows: the column header travels with each cell, so the
+       pairing survives losing the header row. */
+    thead { display: none; }
+    table, tbody, tr, td { display: block; width: auto !important; }
+    tbody tr {
+      padding: 18px 20px; border-bottom: 1px solid var(--hairline-tertiary);
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 0; border-bottom: none; }
+    tbody td + td { margin-top: 6px; }
+    tbody td::before {
+      content: attr(data-label) ' ';
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.14em; color: var(--ink-subtle);
+      display: block; margin-bottom: 3px;
     }
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
-  }
-  .wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
-  header { border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; margin-bottom: 2.5rem; }
-  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -.02em; }
-  h2 {
-    font-size: 1.15rem; margin: 2.75rem 0 .75rem; letter-spacing: -.01em;
-    padding-top: 1.25rem; border-top: 1px solid var(--rule);
-  }
-  h3 { font-size: 1rem; margin: 1.75rem 0 .5rem; color: var(--accent); }
-  .meta { color: var(--muted); font-size: .9rem; margin: 0; }
-  .lede { font-size: 1.05rem; color: var(--muted); margin: 1.5rem 0 0; }
-  p { margin: 0 0 1rem; }
-  ul { margin: 0 0 1rem; padding-left: 1.25rem; }
-  li { margin-bottom: .5rem; }
-  a { color: var(--accent); }
-  code {
-    background: var(--card); padding: .1em .35em; border-radius: 3px;
-    font: .875em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  }
-  .callout {
-    background: var(--card); border-left: 3px solid var(--accent);
-    padding: 1rem 1.15rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0;
-  }
-  .callout p:last-child { margin-bottom: 0; }
-  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .95rem; }
-  th, td { text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th { font-weight: 600; }
-  footer {
-    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
-    color: var(--muted); font-size: .875rem;
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<header>
-  <h1>Privacy Policy</h1>
-  <p class="meta">Do It Up &middot; Last updated 3 September 2026</p>
-  <p class="lede">This policy covers the Android applications published by Do It Up, including <strong>Hearth</strong> (listed as Hearth Launcher).</p>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">DIU</span>
+      <span class="brand-name">Do It Up</span>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <span class="brand-page">Privacy</span>
+    </div>
+    <a href="mailto:hearth@doitup.ca">hearth@doitup.ca</a>
+  </div>
+  <div id="progress" aria-hidden="true"></div>
 </header>
 
-<div class="callout">
-  <p><strong>The short version.</strong> These apps have no accounts and no servers. We do not collect, transmit, or store your personal information &mdash; there is nowhere for it to go. Everything the app saves stays on your device, and the only services it contacts are ones you configure yourself.</p>
+<div class="shell">
+
+  <div class="hero">
+    <span class="badge"><span class="dot" aria-hidden="true"></span>No data collected</span>
+    <h1>Privacy Policy</h1>
+    <p class="lede">Covering the Android applications published by Do It Up, including <strong>Hearth</strong> (listed as Hearth Launcher).</p>
+    <div class="hero-meta">
+      <span>LAST UPDATED&nbsp;&nbsp;3 SEPTEMBER 2026</span>
+      <span>ONTARIO, CANADA</span>
+    </div>
+  </div>
+
+  <div class="short panel">
+    <div class="panel-label">THE SHORT VERSION</div>
+    <div class="panel-body">
+      <p class="short-lede">These apps have no accounts and no servers. We do not collect, transmit, or store your personal information &mdash; there is nowhere for it to go. Everything the app saves stays on your device, and the only services it contacts are ones you configure yourself.</p>
+      <div class="claims">
+        <div class="claim">
+          <div class="claim-t">No servers</div>
+          <div class="claim-d">No backend, no accounts</div>
+        </div>
+        <div class="claim">
+          <div class="claim-t">No analytics</div>
+          <div class="claim-d">No third-party SDKs</div>
+        </div>
+        <div class="claim">
+          <div class="claim-t">No ads</div>
+          <div class="claim-d">No advertising IDs</div>
+        </div>
+        <div class="claim">
+          <div class="claim-t">No location</div>
+          <div class="claim-d">Permission never requested</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <main>
+
+      <section id="s1">
+        <div class="s-head"><span class="s-num">01</span><h2>We do not operate a server</h2></div>
+        <p>Do It Up runs no backend for these apps. There is no sign-up, no account, no profile, and no login. Nothing you enter is sent to us, and we have no ability to see, retrieve, or delete your data &mdash; because we never receive it in the first place.</p>
+        <p>Entitlement, where it applies, is handled entirely by Google Play under Google&rsquo;s own terms. We do not receive your payment details.</p>
+      </section>
+
+      <section id="s2">
+        <div class="s-head"><span class="s-num">02</span><h2>What is stored on your device</h2></div>
+        <p style="margin-bottom:26px">Hearth stores the following locally, on the device only:</p>
+
+        <div class="table-wrap">
+          <table class="store-table">
+            <thead>
+              <tr><th scope="col">What</th><th scope="col">Why</th><th scope="col">How</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="WHAT">Home Assistant address and access token</td>
+                <td data-label="WHY">To connect to your home automation system</td>
+                <td data-label="HOW" class="yes">Encrypted &mdash; Android Keystore</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">IPTV provider address, username, password</td>
+                <td data-label="WHY">To load your channels and guide</td>
+                <td data-label="HOW" class="yes">Encrypted &mdash; Android Keystore</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">Preferences &mdash; favourites, channel groups, watch history, theme, layout, hidden rooms</td>
+                <td data-label="WHY">To keep the app set up the way you left it</td>
+                <td data-label="HOW">Standard app storage</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">Programme guide cache</td>
+                <td data-label="WHY">So the guide loads without re-downloading</td>
+                <td data-label="HOW">Local database</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="after-table">Credentials are held in Keystore-backed encrypted storage, so the stored file is ciphertext rather than plain text. This protects them <em>at rest</em>, on the device. It says nothing about how they travel to the service they belong to &mdash; see <a href="#s3">Providers without encryption</a> below. It is also not a defence against someone with physical or administrative control of an unlocked device.</p>
+        <p>Automatic cloud backup is <strong>disabled</strong> for these apps, so your credentials are not copied into Google&rsquo;s backup service.</p>
+        <p>Uninstalling the app removes everything above. There is no separate deletion request to make, because there is no copy anywhere else.</p>
+      </section>
+
+      <section id="s3">
+        <div class="s-head"><span class="s-num">03</span><h2>Who your device talks to</h2></div>
+        <p style="margin-bottom:26px">The app makes network connections only to services you have chosen or that the platform provides. None of them are operated by us.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Your Home Assistant server</h3>
+            <p>The address is one you supply, usually on your own local network. Your access token is sent to it to authenticate, exactly as any Home Assistant client does. Your home data does not pass through us.</p>
+          </div>
+
+          <div class="card">
+            <h3>Your IPTV provider</h3>
+            <p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one.</p>
+            <p>Channel logos and artwork are frequently hosted on third-party content networks referenced by your provider&rsquo;s playlist; loading them contacts those hosts directly. Some of those hosts offer no encryption, and the app loads pictures from them anyway rather than leaving the channel blank &mdash; so which logos your device fetches, and therefore which channels you are browsing, can be seen by anyone on your network. This applies to images only: everything else is held to the rule below.</p>
+          </div>
+
+          <div class="panel">
+            <div class="panel-label accent">PROVIDERS WITHOUT ENCRYPTION</div>
+            <div class="panel-body">
+              <p>The app always tries to reach your provider over an encrypted connection (HTTPS) first. Many IPTV providers do not offer one. If yours does not, the app will <strong>ask you before connecting</strong>, and will tell you what it means: over an unencrypted connection your provider username and password are sent in the clear &mdash; the Xtream protocol places them in the address of every request, including every stream &mdash; and what you are watching is visible to anyone on your network and to your internet service provider.</p>
+              <p>If you agree to that, the exception applies to <strong>that one provider address</strong>. Your Home Assistant connection, weather, and everything else are unaffected. Aside from the channel artwork described above, unencrypted connections elsewhere remain refused &mdash; and an unencrypted response that is not a picture is refused too. Connecting to a different provider asks again, and uninstalling the app removes it with everything else.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Weather</h3>
+            <p>When weather is not coming from Home Assistant, the app requests a forecast from <a href="https://open-meteo.com/">Open-Meteo</a>. It sends only the location you selected. <strong style="color:var(--ink);font-weight:500">The app does not request or use your device&rsquo;s location permission</strong> &mdash; the location is one you typed or picked yourself.</p>
+          </div>
+
+          <div class="card">
+            <h3>Voice search</h3>
+            <p>Voice search uses Android&rsquo;s built-in speech recognition. When you activate it, audio is handled by your device&rsquo;s speech recognition provider &mdash; typically Google &mdash; under that provider&rsquo;s privacy policy. We do not record, store, or receive audio. The microphone is active only while you are holding the voice control.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4">
+        <div class="s-head"><span class="s-num">04</span><h2>What we do not do</h2></div>
+        <div class="nots">
+          <div class="not"><span><strong>No analytics.</strong> There is no Firebase, no Google Analytics, and no third-party SDK of any kind.</span></div>
+          <div class="not"><span><strong>No crash or usage reporting.</strong> Nothing is sent when the app misbehaves.</span></div>
+          <div class="not"><span><strong>No advertising</strong> and no advertising identifiers.</span></div>
+          <div class="not"><span><strong>No tracking</strong> across apps, sites, or devices.</span></div>
+          <div class="not"><span><strong>No selling or sharing</strong> of personal information. We hold none to sell.</span></div>
+        </div>
+      </section>
+
+      <section id="s5">
+        <div class="s-head"><span class="s-num">05</span><h2>Permissions, and why each is needed</h2></div>
+
+        <div class="table-wrap">
+          <table class="perm-table">
+            <thead>
+              <tr><th scope="col">Permission</th><th scope="col">Used for</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="PERMISSION">Internet, network state</td>
+                <td data-label="USED FOR">Reaching your Home Assistant server and IPTV provider</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Microphone</td>
+                <td data-label="USED FOR">Voice search, and the audio visualiser shown for radio channels &mdash; Android requires this permission to read audio levels for the visualiser</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Display over other apps</td>
+                <td data-label="USED FOR">Showing Home Assistant alerts on top of whatever is playing</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Foreground service</td>
+                <td data-label="USED FOR">Keeping that alert service running</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Run at startup</td>
+                <td data-label="USED FOR">Starting as your launcher when the device boots</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Notifications</td>
+                <td data-label="USED FOR">Showing app notifications</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Accessibility service <em>(optional)</em></td>
+                <td data-label="USED FOR">Making the HOME button return to Hearth on devices that ignore the launcher setting, and turning the screen off from the Sleep control. You switch it on yourself in Android&rsquo;s settings; the app runs without it</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="after-table"><strong>The accessibility service cannot read your screen.</strong> It is declared without <code>canRetrieveWindowContent</code> &mdash; the capability that would let a service see the contents of other apps. It receives only the name of the app coming to the foreground, which is what tells it the HOME button was pressed, and nothing about what is on screen or what you type.</p>
+        <p><strong>Location permission is not requested.</strong></p>
+      </section>
+
+      <section id="s6">
+        <div class="s-head"><span class="s-num">06</span><h2>Children</h2></div>
+        <p>These apps are not directed at children and we do not knowingly collect information from anyone. As described above, we do not collect personal information from users of any age.</p>
+      </section>
+
+      <section id="s7">
+        <div class="s-head"><span class="s-num">07</span><h2>Changes</h2></div>
+        <p>If this policy changes, the updated version is published at this address with a new date at the top. Material changes affecting how your information is handled will be reflected here before the corresponding app update ships.</p>
+      </section>
+
+      <section id="s8">
+        <div class="s-head"><span class="s-num">08</span><h2>Contact</h2></div>
+        <p style="margin-bottom:24px">Questions about this policy:</p>
+        <a class="btn" href="mailto:hearth@doitup.ca">hearth@doitup.ca</a>
+      </section>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-label">CONTENTS</div>
+      <nav aria-label="Contents">
+        <a href="#s1"><span class="n">01</span><span>No server</span></a>
+        <a href="#s2"><span class="n">02</span><span>On your device</span></a>
+        <a href="#s3"><span class="n">03</span><span>Who it talks to</span></a>
+        <a href="#s4"><span class="n">04</span><span>What we don&rsquo;t do</span></a>
+        <a href="#s5"><span class="n">05</span><span>Permissions</span></a>
+        <a href="#s6"><span class="n">06</span><span>Children</span></a>
+        <a href="#s7"><span class="n">07</span><span>Changes</span></a>
+        <a href="#s8"><span class="n">08</span><span>Contact</span></a>
+      </nav>
+    </aside>
+  </div>
+
 </div>
-
-<h2>1. We do not operate a server</h2>
-
-<p>Do It Up runs no backend for these apps. There is no sign-up, no account, no profile, and no login. Nothing you enter is sent to us, and we have no ability to see, retrieve, or delete your data &mdash; because we never receive it in the first place.</p>
-
-<p>Entitlement, where it applies, is handled entirely by Google Play under Google&rsquo;s own terms. We do not receive your payment details.</p>
-
-<h2>2. What is stored on your device</h2>
-
-<p>Hearth stores the following locally, on the device only:</p>
-
-<table>
-  <tr><th>What</th><th>Why</th><th>How</th></tr>
-  <tr>
-    <td>Home Assistant address and access token</td>
-    <td>To connect to your home automation system</td>
-    <td><strong>Encrypted</strong>, via the Android Keystore</td>
-  </tr>
-  <tr>
-    <td>IPTV provider address, username, password</td>
-    <td>To load your channels and guide</td>
-    <td><strong>Encrypted</strong>, via the Android Keystore</td>
-  </tr>
-  <tr>
-    <td>Preferences &mdash; favourites, channel groups, watch history, theme, layout, hidden rooms</td>
-    <td>To keep the app set up the way you left it</td>
-    <td>Standard app storage</td>
-  </tr>
-  <tr>
-    <td>Programme guide cache</td>
-    <td>So the guide loads without re-downloading</td>
-    <td>Local database</td>
-  </tr>
-</table>
-
-<p>Credentials are held in Keystore-backed encrypted storage, so the stored file is ciphertext rather than plain text. This protects them <em>at rest</em>, on the device. It says nothing about how they travel to the service they belong to &mdash; see &ldquo;Providers without encryption&rdquo; below. It is also not a defence against someone with physical or administrative control of an unlocked device.</p>
-
-<p>Automatic cloud backup is <strong>disabled</strong> for these apps, so your credentials are not copied into Google&rsquo;s backup service.</p>
-
-<p>Uninstalling the app removes everything above. There is no separate deletion request to make, because there is no copy anywhere else.</p>
-
-<h2>3. Who your device talks to</h2>
-
-<p>The app makes network connections only to services you have chosen or that the platform provides. None of them are operated by us.</p>
-
-<h3>Your Home Assistant server</h3>
-<p>The address is one you supply, usually on your own local network. Your access token is sent to it to authenticate, exactly as any Home Assistant client does. Your home data does not pass through us.</p>
-
-<h3>Your IPTV provider</h3>
-<p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one. Channel logos and artwork are frequently hosted on third-party content networks referenced by your provider&rsquo;s playlist; loading them contacts those hosts directly. Some of those hosts offer no encryption, and the app loads pictures from them anyway rather than leaving the channel blank &mdash; so which logos your device fetches, and therefore which channels you are browsing, can be seen by anyone on your network. This applies to images only: everything else is held to the rule below.</p>
-
-<p><strong>Providers without encryption.</strong> The app always tries to reach your provider over an encrypted connection (HTTPS) first. Many IPTV providers do not offer one. If yours does not, the app will <strong>ask you before connecting</strong>, and will tell you what it means: over an unencrypted connection your provider username and password are sent in the clear &mdash; the Xtream protocol places them in the address of every request, including every stream &mdash; and what you are watching is visible to anyone on your network and to your internet service provider.</p>
-
-<div class="callout">
-  <p>If you agree to that, the exception applies to <strong>that one provider address</strong>. Your Home Assistant connection, weather, and everything else are unaffected. Aside from the channel artwork described above, unencrypted connections elsewhere remain refused &mdash; and an unencrypted response that is not a picture is refused too. Connecting to a different provider asks again, and uninstalling the app removes it with everything else.</p>
-</div>
-
-<h3>Weather</h3>
-<p>When weather is not coming from Home Assistant, the app requests a forecast from <a href="https://open-meteo.com/">Open-Meteo</a>. It sends only the location you selected. <strong>The app does not request or use your device&rsquo;s location permission</strong> &mdash; the location is one you typed or picked yourself.</p>
-
-<h3>Voice search</h3>
-<p>Voice search uses Android&rsquo;s built-in speech recognition. When you activate it, audio is handled by your device&rsquo;s speech recognition provider &mdash; typically Google &mdash; under that provider&rsquo;s privacy policy. We do not record, store, or receive audio. The microphone is active only while you are holding the voice control.</p>
-
-<h2>4. What we do not do</h2>
-
-<ul>
-  <li><strong>No analytics.</strong> There is no Firebase, no Google Analytics, and no third-party SDK of any kind.</li>
-  <li><strong>No crash or usage reporting.</strong> Nothing is sent when the app misbehaves.</li>
-  <li><strong>No advertising</strong> and no advertising identifiers.</li>
-  <li><strong>No tracking</strong> across apps, sites, or devices.</li>
-  <li><strong>No selling or sharing</strong> of personal information. We hold none to sell.</li>
-</ul>
-
-<h2>5. Permissions, and why each is needed</h2>
-
-<table>
-  <tr><th>Permission</th><th>Used for</th></tr>
-  <tr><td>Internet, network state</td><td>Reaching your Home Assistant server and IPTV provider</td></tr>
-  <tr><td>Microphone</td><td>Voice search, and the audio visualiser shown for radio channels &mdash; Android requires this permission to read audio levels for the visualiser</td></tr>
-  <tr><td>Display over other apps</td><td>Showing Home Assistant alerts on top of whatever is playing</td></tr>
-  <tr><td>Foreground service</td><td>Keeping that alert service running</td></tr>
-  <tr><td>Run at startup</td><td>Starting as your launcher when the device boots</td></tr>
-  <tr><td>Notifications</td><td>Showing app notifications</td></tr>
-  <tr><td>Accessibility service <em>(optional)</em></td><td>Making the HOME button return to Hearth on devices that ignore the launcher setting, and turning the screen off from the Sleep control. You switch it on yourself in Android&rsquo;s settings; the app runs without it</td></tr>
-</table>
-
-<p><strong>The accessibility service cannot read your screen.</strong> It is declared without <code>canRetrieveWindowContent</code> &mdash; the capability that would let a service see the contents of other apps. It receives only the name of the app coming to the foreground, which is what tells it the HOME button was pressed, and nothing about what is on screen or what you type.</p>
-
-<p><strong>Location permission is not requested.</strong></p>
-
-<h2>6. Children</h2>
-
-<p>These apps are not directed at children and we do not knowingly collect information from anyone. As described above, we do not collect personal information from users of any age.</p>
-
-<h2>7. Changes</h2>
-
-<p>If this policy changes, the updated version is published at this address with a new date at the top. Material changes affecting how your information is handled will be reflected here before the corresponding app update ships.</p>
-
-<h2>8. Contact</h2>
-
-<p>Questions about this policy: <a href="mailto:hearth@doitup.ca">hearth@doitup.ca</a></p>
 
 <footer>
-  <p>Do It Up &middot; Ontario, Canada</p>
+  <div class="footer-inner">
+    <span>DO IT UP &middot; ONTARIO, CANADA</span>
+    <span>LAST UPDATED 3 SEPTEMBER 2026</span>
+  </div>
 </footer>
 
-</div>
+<script>
+/* Scroll position and the contents rail's current section.
+   Both are decoration over a page that reads correctly without them:
+   no JS means a progress bar stuck at zero and a rail of plain links,
+   which is why nothing here is guarded by a fallback. */
+(function () {
+  var bar = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var queued = false;
+
+  function paint() {
+    queued = false;
+
+    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    var runway = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (runway > 0 ? Math.min(100, Math.max(0, (scrolled / runway) * 100)) : 0) + '%';
+
+    /* The section whose top has most recently passed the header. Falls
+       back to the first, so something is always marked before the first
+       heading has been reached. */
+    var current = 0;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i] && sections[i].getBoundingClientRect().top <= 96) current = i;
+    }
+    for (var j = 0; j < links.length; j++) {
+      links[j].classList.toggle('here', j === current);
+    }
+  }
+
+  function onScroll() {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(paint);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  paint();
+})();
+</script>
+
 </body>
 </html>
