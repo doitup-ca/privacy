@@ -3,6 +3,10 @@
 Privacy policy for Do It Up apps, served by GitHub Pages at
 **<https://doitup-ca.github.io/privacy/>**
 
+**➜ Picking this up in a new session?** The handoff is in the `hearth` repo and covers this one:
+`gh api repos/bogez/hearth/contents/docs/handoff.md --jq .content | base64 -d`. There is no status
+doc here on purpose — see [CLAUDE.md](CLAUDE.md).
+
 That URL is what goes in the Google Play Console (Store listing → Privacy policy)
 and it must stay publicly reachable and un-gated for as long as any app is listed.
 
