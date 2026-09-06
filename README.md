@@ -38,9 +38,11 @@ the measured numbers, is in the comment at the top of the stylesheet.
 - **No webfont is fetched.** The font stacks name Inter and JetBrains Mono but
   request nothing from a CDN. A policy page that phoned a third party to render
   the sentence "these apps talk to no third party" would be its own
-  counter-example. The only external URL in the file is the `open-meteo.com`
-  link in the Weather section, and it is a link, not a request. If fidelity
-  matters more, self-host the `woff2` files here rather than linking out.
+  counter-example. **The file now links out to nothing at all** — the last
+  external URL was the `open-meteo.com` link in the Weather section, removed
+  2026-09-06 with the feature it described. Keep it that way: if webfont
+  fidelity ever matters more, self-host the `woff2` files here rather than
+  linking out.
 - **Two colours sit above the design system's values**, because the design's
   were under the WCAG AA 4.5:1 floor for small text. Lowest ratio on the page is
   now 5.47:1. `--primary` survives for the progress rule only, which is a

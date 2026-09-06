@@ -455,13 +455,8 @@
             <div class="panel-label accent">PROVIDERS WITHOUT ENCRYPTION</div>
             <div class="panel-body">
               <p>The app always tries to reach your provider over an encrypted connection (HTTPS) first. Many IPTV providers do not offer one. If yours does not, the app will <strong>ask you before connecting</strong>, and will tell you what it means: over an unencrypted connection your provider username and password are sent in the clear &mdash; the Xtream protocol places them in the address of every request, including every stream &mdash; and what you are watching is visible to anyone on your network and to your internet service provider.</p>
-              <p>If you agree to that, the exception applies to <strong>that one provider address</strong>. Your Home Assistant connection, weather, and everything else are unaffected. Aside from the channel artwork described above, unencrypted connections elsewhere remain refused &mdash; and an unencrypted response that is not a picture is refused too. Connecting to a different provider asks again, and uninstalling the app removes it with everything else.</p>
+              <p>If you agree to that, the exception applies to <strong>that one provider address</strong>. Your Home Assistant connection and everything else are unaffected. Aside from the channel artwork described above, unencrypted connections elsewhere remain refused &mdash; and an unencrypted response that is not a picture is refused too. Connecting to a different provider asks again, and uninstalling the app removes it with everything else.</p>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>Weather</h3>
-            <p>When weather is not coming from Home Assistant, the app requests a forecast from <a href="https://open-meteo.com/">Open-Meteo</a>. It sends only the location you selected. <strong style="color:var(--ink);font-weight:500">The app does not request or use your device&rsquo;s location permission</strong> &mdash; the location is one you typed or picked yourself.</p>
           </div>
 
           <div class="card">
