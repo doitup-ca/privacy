@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Privacy Policy — Do It Up</title>
+<style>
+
+  :root {
+    --primary:          #5e6ad2;
+    --primary-strong:   #828fff;
+    --canvas:           #010102;
+    --surface-1:        #0e0f11;
+    --surface-2:        #17181a;
+    --hairline:         #23252a;
+    --hairline-strong:  #34373d;
+    --hairline-tertiary:#1a1c1f;
+    --ink:              #f7f8f8;
+    --ink-muted:        #d0d6e0;
+    --ink-subtle:       #8a8f98;
+    --success:          #27a644;
+    --font-text: 'Inter', 'SF Pro Display', -apple-system, system-ui, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --lift: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-text);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 30;
+    border-bottom: 1px solid var(--hairline);
+    background: rgba(1,1,2,0.85);
+    backdrop-filter: blur(10px);
+  }
+  .topbar-inner {
+    height: 60px; display: flex; align-items: center;
+    justify-content: space-between; gap: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .mark {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 26px; flex: none;
+    border: 1px solid var(--hairline-strong); border-radius: 4px;
+    background: var(--surface-2); color: var(--primary-strong);
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+  }
+  .brand-name { font-size: 14px; font-weight: 500; letter-spacing: -0.2px; color: var(--ink); }
+  .brand-sep  { font-size: 14px; color: var(--ink-subtle); }
+  .brand-page { font-size: 14px; color: var(--ink-muted); }
+  .topbar a { font-size: 13px; color: var(--ink-subtle); text-decoration: none; white-space: nowrap; }
+  .topbar a:hover { color: var(--ink); }
+
+  #progress {
+    position: absolute; left: 0; bottom: -1px; height: 2px; width: 0;
+    background: var(--primary); transition: width 90ms linear;
+  }
+
+  .hero { padding: 80px 0 56px; border-bottom: 1px solid var(--hairline); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 2px 8px; border-radius: 9999px;
+    border: 1px solid var(--hairline); background: var(--surface-2);
+    font-size: 12px; line-height: 1.4; color: var(--ink-muted);
+  }
+  .badge .dot {
+    width: 6px; height: 6px; border-radius: 9999px;
+    background: var(--success); flex: none;
+  }
+  h1 {
+    margin: 22px 0 0; font-weight: 600; font-size: 60px;
+    line-height: 1.03; letter-spacing: -2.4px; color: var(--ink);
+  }
+  .lede {
+    margin: 20px 0 0; max-width: 62ch; font-size: 19px;
+    line-height: 1.6; letter-spacing: -0.2px; color: var(--ink-muted);
+  }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 28px; margin-top: 32px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; color: var(--ink-subtle);
+  }
+
+  .panel {
+    border: 1px solid var(--hairline-strong); border-radius: 12px;
+    background: var(--surface-2); box-shadow: var(--lift); overflow: hidden;
+  }
+  .panel-label {
+    padding: 0 26px; height: 40px; display: flex; align-items: center;
+    border-bottom: 1px solid var(--hairline);
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; color: var(--ink-subtle);
+  }
+  .panel-label.accent { color: var(--primary-strong); font-size: 11px; }
+  .panel-body { padding: 26px; }
+  .panel-body > p:last-child { margin-bottom: 0; }
+
+  .short { margin: 56px 0 0; }
+  .short .panel-body { padding: 30px 26px 32px; }
+  .short-lede {
+    margin: 0; max-width: 70ch; font-size: 19px;
+    line-height: 1.6; letter-spacing: -0.2px; color: var(--ink);
+  }
+  .claims {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px; margin-top: 28px; background: var(--hairline-tertiary);
+    border: 1px solid var(--hairline-tertiary); border-radius: 8px; overflow: hidden;
+  }
+  .claim { padding: 16px 18px; background: var(--surface-1); }
+  .claim-t { font-size: 15px; font-weight: 500; color: var(--success); }
+  .claim-d { font-size: 13px; line-height: 1.5; color: var(--ink-subtle); margin-top: 5px; }
+
+  .columns {
+    display: grid; grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 64px; align-items: start; padding: 64px 0 96px;
+  }
+  main { min-width: 0; }
+
+  section { scroll-margin-top: 88px; padding-bottom: 52px; }
+  section + section { border-top: 1px solid var(--hairline-tertiary); padding-top: 52px; }
+  .s-head { display: flex; gap: 16px; align-items: baseline; margin-bottom: 18px; }
+  .s-num { font-family: var(--font-mono); font-size: 12px; color: var(--primary-strong); flex: none; }
+  h2 {
+    margin: 0; font-weight: 600; font-size: 30px;
+    letter-spacing: -1.1px; color: var(--ink);
+  }
+  section p {
+    margin: 0 0 16px; max-width: 72ch; font-size: 17px;
+    line-height: 1.7; color: var(--ink-muted);
+  }
+  section p:last-child { margin-bottom: 0; }
+  section p strong { color: var(--ink); font-weight: 500; }
+  a { color: var(--primary-strong); }
+  code {
+    font-family: var(--font-mono); font-size: 0.875em;
+    padding: 0.1em 0.35em; border-radius: 4px;
+    background: var(--surface-2); border: 1px solid var(--hairline-tertiary);
+    color: var(--ink-muted);
+  }
+
+  .cards { display: grid; gap: 16px; }
+  .card {
+    border: 1px solid var(--hairline); border-radius: 12px;
+    background: var(--surface-1); padding: 26px 26px 28px; box-shadow: var(--lift);
+  }
+  .card h3 {
+    margin: 0 0 12px; font-weight: 500; font-size: 19px;
+    letter-spacing: -0.4px; color: var(--ink);
+  }
+  .card p {
+    margin: 0 0 14px; max-width: 70ch; font-size: 16px;
+    line-height: 1.65; color: var(--ink-subtle);
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .panel-body p {
+    margin: 0 0 14px; max-width: 70ch; font-size: 16px;
+    line-height: 1.65; color: var(--ink-muted);
+  }
+  .panel-body p strong { color: var(--ink); font-weight: 500; }
+
+  .table-wrap {
+    border: 1px solid var(--hairline); border-radius: 12px;
+    background: var(--surface-1); box-shadow: var(--lift); overflow: hidden;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    padding: 14px 22px; text-align: left; font-weight: 400;
+    border-bottom: 1px solid var(--hairline); background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.14em; color: var(--ink-subtle);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  tbody td {
+    padding: 18px 22px; text-align: left; vertical-align: top;
+    font-size: 15px; line-height: 1.55; color: var(--ink-subtle);
+    border-bottom: 1px solid var(--hairline-tertiary);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td:first-child { color: var(--ink); }
+  td.yes { color: var(--success); }
+  .store-table thead th:nth-child(1), .store-table tbody td:nth-child(1) { width: 36%; }
+  .store-table thead th:nth-child(2), .store-table tbody td:nth-child(2) { width: 33%; }
+  .perm-table thead th:nth-child(1), .perm-table tbody td:nth-child(1) { width: 35%; }
+  .after-table { margin-top: 26px; }
+
+  .nots {
+    display: grid; gap: 1px; background: var(--hairline-tertiary);
+    border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden;
+  }
+  .not {
+    display: flex; gap: 16px; align-items: baseline;
+    padding: 20px 24px; background: var(--surface-1);
+    font-size: 16px; line-height: 1.6; color: var(--ink-muted);
+  }
+  .not::before {
+    content: '—'; flex: none;
+    font-family: var(--font-mono); font-size: 14px; color: var(--ink-subtle);
+  }
+  .not strong { color: var(--ink); font-weight: 500; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 40px; padding: 0 18px; border-radius: 8px;
+    border: 1px solid var(--hairline); background: var(--surface-1);
+    color: var(--ink); font-size: 14px; text-decoration: none;
+    transition: background 140ms ease;
+  }
+  .btn:hover { background: var(--surface-2); }
+
+  .toc { position: sticky; top: 92px; }
+  .toc-label {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em;
+    color: var(--ink-subtle); padding-bottom: 14px;
+    border-bottom: 1px solid var(--hairline-tertiary);
+  }
+  .toc nav { display: grid; gap: 2px; padding-top: 12px; }
+  .toc a {
+    display: flex; gap: 12px; padding: 7px 10px; border-radius: 6px;
+    font-size: 13px; line-height: 1.4; color: var(--ink-subtle);
+    text-decoration: none; transition: color 140ms ease, background 140ms ease;
+  }
+  .toc a:hover { background: var(--surface-2); color: var(--ink-muted); }
+  .toc a.here { color: var(--ink); background: var(--surface-2); }
+  .toc a .n { font-family: var(--font-mono); font-size: 11px; color: var(--ink-subtle); flex: none; }
+
+  footer { border-top: 1px solid var(--hairline); background: var(--surface-1); }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto; padding: 32px;
+    display: flex; flex-wrap: wrap; gap: 16px;
+    justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.1em; color: var(--ink-subtle);
+  }
+
+  @media (max-width: 900px) {
+    .columns { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 48px 0 72px; }
+    .toc { display: none; }
+  }
+  @media (max-width: 640px) {
+    .shell { padding: 0 20px; }
+    .hero { padding: 48px 0 40px; }
+    h1 { font-size: 38px; letter-spacing: -1.4px; }
+    .lede, .short-lede { font-size: 17px; }
+    h2 { font-size: 24px; letter-spacing: -0.7px; }
+    section p { font-size: 16px; }
+    .hero-meta { gap: 10px; flex-direction: column; }
+    .panel-label, .panel-body, .card { padding-left: 20px; padding-right: 20px; }
+    .short .panel-body { padding: 24px 20px 26px; }
+
+    thead { display: none; }
+    table, tbody, tr, td { display: block; width: auto !important; }
+    tbody tr {
+      padding: 18px 20px; border-bottom: 1px solid var(--hairline-tertiary);
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 0; border-bottom: none; }
+    tbody td + td { margin-top: 6px; }
+    tbody td::before {
+      content: attr(data-label) ' ';
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.14em; color: var(--ink-subtle);
+      display: block; margin-bottom: 3px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">DIU</span>
+      <span class="brand-name">Do It Up</span>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <span class="brand-page">Privacy</span>
+    </div>
+    <a href="mailto:privacy@doitup.ca">privacy@doitup.ca</a>
+  </div>
+  <div id="progress" aria-hidden="true"></div>
+</header>
+
+<div class="shell">
+
+  <div class="hero">
+    <span class="badge"><span class="dot" aria-hidden="true"></span>The apps collect no data</span>
+    <h1>Privacy Policy</h1>
+    <p class="lede">Covering the Android applications published by Do It Up, including <strong>Hearth</strong> (listed as Hearth Launcher).</p>
+    <div class="hero-meta">
+      <span>LAST UPDATED&nbsp;&nbsp;14 SEPTEMBER 2026</span>
+      <span>ONTARIO, CANADA</span>
+    </div>
+  </div>
+
+  <div class="short panel">
+    <div class="panel-label">THE SHORT VERSION</div>
+    <div class="panel-body">
+      <p class="short-lede">These apps have no accounts, and we run no servers for them. What they save stays on your device. They connect to the services you set up &mdash; your Home Assistant server and your live TV provider &mdash; and to services your device already provides, such as speech recognition for voice search.</p>
+      <p class="short-lede">The one thing we do hold is not the app at all. If you write to us &mdash; to ask about testing Hearth before it is released, or about anything else &mdash; then we have what you sent. <a href="#s6">Section 06</a> says what happens to it, and it is short.</p>
+      <div class="claims">
+        <div class="claim">
+          <div class="claim-t">No servers</div>
+          <div class="claim-d">No backend, no accounts</div>
+        </div>
+        <div class="claim">
+          <div class="claim-t">No analytics</div>
+          <div class="claim-d">No analytics or ad SDKs</div>
+        </div>
+        <div class="claim">
+          <div class="claim-t">No ads</div>
+          <div class="claim-d">No advertising IDs</div>
+        </div>
+        <div class="claim">
+          <div class="claim-t">No location</div>
+          <div class="claim-d">Permission never requested</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <main>
+
+      <section id="s1">
+        <div class="s-head"><span class="s-num">01</span><h2>We do not operate a server</h2></div>
+        <p>Do It Up runs no backend for these apps. There is no sign-up, no account, no profile, and no login. Nothing you enter is sent to us, and we have no ability to see, retrieve, or delete your data &mdash; because we never receive it in the first place.</p>
+        <p>That is about the app. A message you send us is different: it reaches a mailbox we read. See <a href="#s6">if you write to us</a>.</p>
+        <p>Entitlement, where it applies, is handled entirely by Google Play under Google&rsquo;s own terms. We do not receive your payment details.</p>
+      </section>
+
+      <section id="s2">
+        <div class="s-head"><span class="s-num">02</span><h2>What is stored on your device</h2></div>
+        <p style="margin-bottom:26px">Hearth stores the following locally, on the device only:</p>
+
+        <div class="table-wrap">
+          <table class="store-table">
+            <thead>
+              <tr><th scope="col">What</th><th scope="col">Why</th><th scope="col">How</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="WHAT">Home Assistant address and access token</td>
+                <td data-label="WHY">To connect to your home automation system</td>
+                <td data-label="HOW" class="yes">Encrypted &mdash; Android Keystore</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">Live TV provider address, username, password</td>
+                <td data-label="WHY">To load your channels and guide</td>
+                <td data-label="HOW" class="yes">Encrypted &mdash; Android Keystore</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">Preferences &mdash; favourites, channel groups, watch history, theme, layout, hidden rooms and cards</td>
+                <td data-label="WHY">To keep the app set up the way you left it</td>
+                <td data-label="HOW">Standard app storage</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">Programme guide cache</td>
+                <td data-label="WHY">So the guide loads without re-downloading</td>
+                <td data-label="HOW">Local database</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="after-table">Your logins are encrypted while they are stored on the device. How they travel to the service they belong to is covered in <a href="#s3">section 03</a>. Automatic cloud backup is <strong>turned off</strong>, so they are not copied to Google&rsquo;s backup service.</p>
+        <p>Uninstalling the app deletes everything above, and we hold no copy. The access token Hearth used stays valid in your Home Assistant until you remove it there, in your Home Assistant user profile.</p>
+      </section>
+
+      <section id="s3">
+        <div class="s-head"><span class="s-num">03</span><h2>Who your device talks to</h2></div>
+        <p style="margin-bottom:26px">The app connects only to services you have chosen or that your device provides. None of them are run by us.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Your Home Assistant server</h3>
+            <p>The address is one you supply, usually on your own local network. Your access token is sent to it to authenticate, exactly as any Home Assistant client does. Your home data does not pass through us.</p>
+          </div>
+
+          <div class="card">
+            <h3>Your live TV provider</h3>
+            <p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one.</p>
+            <p>Channel logos load from wherever your provider&rsquo;s channel list points, and some of those sites have no encryption. Anyone on your network could see which logos load, and so which channels you are browsing.</p>
+          </div>
+
+          <div class="panel">
+            <div class="panel-label accent">PROVIDERS WITHOUT ENCRYPTION</div>
+            <div class="panel-body">
+              <p>The app tries an encrypted connection (HTTPS) to your provider first. If your provider doesn&rsquo;t offer one, the app <strong>asks before connecting</strong> and explains what it means: your provider username and password, and what you watch, can be seen by anyone on your network and by your internet provider. That permission covers <strong>that one provider</strong>; a different provider asks again.</p>
+              <p>On your own home network, the app also connects without encryption where that is how a service is set up &mdash; for example, a Home Assistant server at a local address. Other unencrypted connections are refused.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Voice search</h3>
+            <p>Voice search uses your device&rsquo;s speech recognition service &mdash; on many devices, Google&rsquo;s &mdash; which handles the audio under its own privacy policy and returns the words to the app. The app does not save or send any audio. The microphone is on only while voice search is listening, and turns off when it returns a result or you close it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4">
+        <div class="s-head"><span class="s-num">04</span><h2>What we do not do</h2></div>
+        <div class="nots">
+          <div class="not"><span><strong>No analytics.</strong> No analytics, crash-reporting or advertising SDKs are built in.</span></div>
+          <div class="not"><span><strong>No crash reports from the app.</strong> Google Play may collect crash and performance data about apps on your device, under Google&rsquo;s own terms.</span></div>
+          <div class="not"><span><strong>No advertising</strong> and no advertising identifiers.</span></div>
+          <div class="not"><span><strong>No tracking</strong> across apps, sites, or devices.</span></div>
+          <div class="not"><span><strong>No selling or sharing</strong> of personal information &mdash; including anything you send us by email. It is not sold, rented, traded, or passed to anyone for their own use.</span></div>
+        </div>
+      </section>
+
+      <section id="s5">
+        <div class="s-head"><span class="s-num">05</span><h2>Permissions, and why each is needed</h2></div>
+
+        <div class="table-wrap">
+          <table class="perm-table">
+            <thead>
+              <tr><th scope="col">Permission</th><th scope="col">Used for</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="PERMISSION">Internet, network state</td>
+                <td data-label="USED FOR">Reaching your Home Assistant server, your live TV provider and channel logos</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Microphone</td>
+                <td data-label="USED FOR">Voice search only</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Display over other apps</td>
+                <td data-label="USED FOR">Showing Home Assistant alerts on top of whatever is playing</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Foreground service (special use)</td>
+                <td data-label="USED FOR">Keeping that alert service running</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Keep the device awake</td>
+                <td data-label="USED FOR">Letting background tasks, such as updating the programme guide, finish</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Run at startup</td>
+                <td data-label="USED FOR">Starting Hearth when the device turns on</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Notifications</td>
+                <td data-label="USED FOR">The notice Android shows while the alert service is running</td>
+              </tr>
+              <tr>
+                <td data-label="PERMISSION">Accessibility service <em>(optional)</em></td>
+                <td data-label="USED FOR">Lets Hearth come back to the front when another launcher takes the screen, and lets Sleep in the dock turn the screen off. It stays off unless you turn it on in Android&rsquo;s settings, and the app works without it</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="after-table"><strong>The accessibility service cannot read your screen.</strong> It only learns which app has come to the front &mdash; nothing about what is on screen or what you type.</p>
+        <p><strong>Location permission is not requested.</strong></p>
+      </section>
+
+      <section id="s6">
+        <div class="s-head"><span class="s-num">06</span><h2>If you write to us</h2></div>
+        <p>Everything above is about the app, and about a device we never hear from. This section is the other case: you sending us a message, which is the only way we come to hold anything about you at all.</p>
+        <p style="margin-bottom:26px">We do not ask for it, and there is no form to fill in. What we have is what you chose to put in an email.</p>
+
+        <div class="table-wrap">
+          <table class="store-table">
+            <thead>
+              <tr><th scope="col">What</th><th scope="col">Why</th><th scope="col">How long</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="WHAT">Your email address</td>
+                <td data-label="WHY">To reply &mdash; and, if you asked to test Hearth, to enrol you in the test</td>
+                <td data-label="HOW LONG">While the test runs, or while the conversation is useful</td>
+              </tr>
+              <tr>
+                <td data-label="WHAT">Whatever you tell us &mdash; which TV box you have, whether you run Home Assistant, what went wrong</td>
+                <td data-label="WHY">To answer you, and to know what the app has to cope with</td>
+                <td data-label="HOW LONG">Kept with the message</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="after-table">Mail arrives in a mailbox we hold with an email provider, and is read by us. It is not added to a mailing list, a newsletter or any analytics.</p>
+
+        <div class="panel">
+          <div class="panel-label accent">TESTING BEFORE RELEASE</div>
+          <div class="panel-body">
+            <p>Hearth is in closed testing, and access is granted by Google account rather than by download. If you ask to take part, the address you send us is entered into the tester list in Google Play Console &mdash; that is the mechanism Google provides, and there is no way to give you the app without it. Google handles that list under its own terms, as the operator of the store.</p>
+            <p>That is the whole of it. The address is used to grant access and to talk to you about the app, and for nothing else.</p>
+            <p>Ask at any time and we will take you off the list. Doing so ends your access to the test build &mdash; that is what being on the list <em>is</em> &mdash; and the address goes with it. <strong>When the closed test ends, the list is deleted.</strong></p>
+          </div>
+        </div>
+
+        <p class="after-table">Our website has no forms, no accounts and no analytics.</p>
+      </section>
+
+      <section id="s7">
+        <div class="s-head"><span class="s-num">07</span><h2>Children</h2></div>
+        <p>These apps are not directed at children, and the apps collect no personal information from users of any age. We do not knowingly seek information from a child by any other route either.</p>
+      </section>
+
+      <section id="s8">
+        <div class="s-head"><span class="s-num">08</span><h2>Changes</h2></div>
+        <p>If this policy changes, the updated version is published at this address with a new date at the top. Material changes affecting how your information is handled will be reflected here before the corresponding app update ships.</p>
+      </section>
+
+      <section id="s9">
+        <div class="s-head"><span class="s-num">09</span><h2>Contact</h2></div>
+        <p style="margin-bottom:24px">Questions about this policy:</p>
+        <a class="btn" href="mailto:privacy@doitup.ca">privacy@doitup.ca</a>
+      </section>
+
+    </main>
+
+    <aside class="toc">
+      <div class="toc-label">CONTENTS</div>
+      <nav aria-label="Contents">
+        <a href="#s1"><span class="n">01</span><span>No server</span></a>
+        <a href="#s2"><span class="n">02</span><span>On your device</span></a>
+        <a href="#s3"><span class="n">03</span><span>Who it talks to</span></a>
+        <a href="#s4"><span class="n">04</span><span>What we don&rsquo;t do</span></a>
+        <a href="#s5"><span class="n">05</span><span>Permissions</span></a>
+        <a href="#s6"><span class="n">06</span><span>If you write</span></a>
+        <a href="#s7"><span class="n">07</span><span>Children</span></a>
+        <a href="#s8"><span class="n">08</span><span>Changes</span></a>
+        <a href="#s9"><span class="n">09</span><span>Contact</span></a>
+      </nav>
+    </aside>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>DO IT UP &middot; ONTARIO, CANADA</span>
+    <span>LAST UPDATED 14 SEPTEMBER 2026</span>
+  </div>
+</footer>
+
+<script>
+
+(function () {
+  var bar = document.getElementById('progress');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var queued = false;
+
+  function paint() {
+    queued = false;
+
+    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    var runway = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (runway > 0 ? Math.min(100, Math.max(0, (scrolled / runway) * 100)) : 0) + '%';
+
+    var current = 0;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i] && sections[i].getBoundingClientRect().top <= 96) current = i;
+    }
+    for (var j = 0; j < links.length; j++) {
+      links[j].classList.toggle('here', j === current);
+    }
+  }
+
+  function onScroll() {
+    if (queued) return;
+    queued = true;
+    window.requestAnimationFrame(paint);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  paint();
+})();
+</script>
+
+</body>
+</html>
