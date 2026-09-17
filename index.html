@@ -360,7 +360,7 @@
                 <td data-label="HOW" class="yes">Encrypted &mdash; Android Keystore</td>
               </tr>
               <tr>
-                <td data-label="WHAT">Live TV provider address, username, password</td>
+                <td data-label="WHAT">Live TV address, and a username and password if your provider uses one</td>
                 <td data-label="WHY">To load your channels and guide</td>
                 <td data-label="HOW" class="yes">Encrypted &mdash; Android Keystore</td>
               </tr>
@@ -394,14 +394,14 @@
 
           <div class="card">
             <h3>Your live TV provider</h3>
-            <p>The address and credentials are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one.</p>
+            <p>The addresses, and any credentials, are ones you supply. Your provider necessarily sees your requests &mdash; what you play and when &mdash; and handles that under <em>their</em> privacy policy, not this one.</p>
             <p>Channel logos load from wherever your provider&rsquo;s channel list points, and some of those sites have no encryption. Anyone on your network could see which logos load, and so which channels you are browsing.</p>
           </div>
 
           <div class="panel">
             <div class="panel-label accent">PROVIDERS WITHOUT ENCRYPTION</div>
             <div class="panel-body">
-              <p>The app tries an encrypted connection (HTTPS) to your provider first. If your provider doesn&rsquo;t offer one, the app <strong>asks before connecting</strong> and explains what it means: your provider username and password, and what you watch, can be seen by anyone on your network and by your internet provider. That permission covers <strong>that one provider</strong>; a different provider asks again.</p>
+              <p>The app tries an encrypted connection (HTTPS) to your provider first. If your provider doesn&rsquo;t offer one, the app <strong>asks before connecting</strong> and explains what it means: your provider username and password, and what you watch, can be seen by anyone on your network and by your internet provider. That permission covers <strong>that one provider</strong>; a different provider asks again. A playlist is stricter: it names hundreds of hosts you have never seen, so the app does not ask &mdash; unencrypted playlists, guides and channels are <strong>refused</strong>.</p>
               <p>On your own home network, the app also connects without encryption where that is how a service is set up &mdash; for example, a Home Assistant server at a local address. Other unencrypted connections are refused.</p>
             </div>
           </div>
@@ -435,7 +435,7 @@
             <tbody>
               <tr>
                 <td data-label="PERMISSION">Internet, network state</td>
-                <td data-label="USED FOR">Reaching your Home Assistant server, your live TV provider and channel logos</td>
+                <td data-label="USED FOR">Reaching your Home Assistant server, your live TV source, its guide and channel logos</td>
               </tr>
               <tr>
                 <td data-label="PERMISSION">Microphone</td>
