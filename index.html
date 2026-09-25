@@ -463,13 +463,13 @@
               </tr>
               <tr>
                 <td data-label="PERMISSION">Accessibility service <em>(optional)</em></td>
-                <td data-label="USED FOR">Lets Hearth come back to the front when another launcher takes the screen, and lets Sleep in the dock turn the screen off. It stays off unless you turn it on in Android&rsquo;s settings, and the app works without it</td>
+                <td data-label="USED FOR">Lets Hearth come back to the front when another launcher takes the screen, and lets Sleep in the dock turn the screen off. Home Assistant pop-ups also need it, to know which app is showing. It stays off unless you turn it on in Android&rsquo;s settings; without it, everything else in the app works</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <p class="after-table"><strong>The accessibility service cannot read your screen.</strong> It only learns which app has come to the front &mdash; nothing about what is on screen or what you type.</p>
+        <p class="after-table"><strong>The accessibility service cannot read your screen.</strong> It learns which app has come to the front, and sees remote and keyboard button presses so it can return to Hearth; it passes every press straight through and records none of them. It learns nothing about what is on screen.</p>
         <p><strong>Location permission is not requested.</strong></p>
       </section>
 
