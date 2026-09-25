@@ -412,7 +412,7 @@
             <div class="panel-label accent">PROVIDERS WITHOUT ENCRYPTION</div>
             <div class="panel-body">
               <p>The app tries an encrypted connection (HTTPS) to your provider first. If your provider doesn&rsquo;t offer one, the app <strong>asks before connecting</strong> and explains what it means: your provider username and password, and what you watch, can be seen by anyone on your network and by your internet provider. That permission covers <strong>that one provider</strong>; a different provider asks again. A playlist is stricter: it names hundreds of hosts you have never seen, so the app does not ask &mdash; unencrypted playlists, guides and channels are <strong>refused</strong>.</p>
-              <p>On your own home network, the app also connects without encryption where that is how a service is set up &mdash; for example, a Home Assistant server at a local address. Other unencrypted connections are refused.</p>
+              <p>On your own home network, the app also connects without encryption where that is how a service is set up &mdash; for example, a Home Assistant server at a local address. Other unencrypted connections that the app makes itself are refused. If you choose to show your Home Assistant dashboard in the app, it is a web page and loads whatever that dashboard loads, including anything a custom card fetches from other sites.</p>
             </div>
           </div>
 
